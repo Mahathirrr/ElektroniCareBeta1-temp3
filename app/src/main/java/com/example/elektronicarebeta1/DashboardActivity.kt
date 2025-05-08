@@ -3,8 +3,6 @@ package com.example.elektronicarebeta1
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -15,20 +13,19 @@ import com.example.elektronicarebeta1.databinding.ActivityDashboardBinding
 import com.example.elektronicarebeta1.models.RepairRequest
 import com.example.elektronicarebeta1.repositories.FirebaseRepairRepository
 import com.example.elektronicarebeta1.repositories.FirebaseUserRepository
-import com.example.elektronicarebeta1.viewmodels.DashboardUiState
 import com.example.elektronicarebeta1.viewmodels.DashboardViewModel
+import com.example.elektronicarebeta1.viewmodels.DashboardViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
+import java.text.SimpleDateFormat
+import java.util.Locale
 import kotlinx.coroutines.launch
 
 class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var auth: FirebaseAuth
-    
+
     private val viewModel: DashboardViewModel by viewModels {
-        DashboardViewModelFactory(
-            FirebaseUserRepository(),
-            FirebaseRepairRepository()
-        )
+        DashboardViewModelFactory(FirebaseUserRepository(), FirebaseRepairRepository())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,17 +46,25 @@ class DashboardActivity : AppCompatActivity() {
                 viewModel.uiState.collect { state ->
                     when (state) {
                         is DashboardUiState.Loading -> {
-                            // Show loading state
                             binding.progressBar.visibility = View.VISIBLE
                         }
                         is DashboardUiState.Success -> {
                             binding.progressBar.visibility = View.GONE
-                            binding.welcomeText.text = "Welcome back, ${state.user.fullName.split(" ").first()}!"
+                            binding.welcomeText.text =
+                                    getString(
+                                            R.string.welcome_back_name,
+                                            state.user.fullName.split(" ").first()
+                                    )
                             updateRecentRepairs(state.recentRepairs)
                         }
                         is DashboardUiState.Error -> {
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(this@DashboardActivity, state.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                            this@DashboardActivity,
+                                            state.message,
+                                            Toast.LENGTH_SHORT
+                                    )
+                                    .show()
                         }
                     }
                 }
@@ -76,10 +81,16 @@ class DashboardActivity : AppCompatActivity() {
             printerCategory.setOnClickListener { navigateToServices("Printers") }
 
             // Navigation clicks
-            navHome.setOnClickListener { /* Already on home */ }
-            navHistory.setOnClickListener { startActivity(Intent(this@DashboardActivity, RepairHistoryActivity::class.java)) }
-            navServices.setOnClickListener { startActivity(Intent(this@DashboardActivity, ServicesActivity::class.java)) }
-            navProfile.setOnClickListener { startActivity(Intent(this@DashboardActivity, ProfileActivity::class.java)) }
+            navHome.setOnClickListener { /* Already on home */}
+            navHistory.setOnClickListener {
+                startActivity(Intent(this@DashboardActivity, RepairHistoryActivity::class.java))
+            }
+            navServices.setOnClickListener {
+                startActivity(Intent(this@DashboardActivity, ServicesActivity::class.java))
+            }
+            navProfile.setOnClickListener {
+                startActivity(Intent(this@DashboardActivity, ProfileActivity::class.java))
+            }
 
             // Notification
             notificationIcon.setOnClickListener {
@@ -94,56 +105,52 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun updateRecentRepairs(repairs: List<RepairRequest>) {
-        // Update repair cards based on the repairs list
         if (repairs.isEmpty()) {
             binding.noRepairsText.visibility = View.VISIBLE
             binding.repairCardsContainer.visibility = View.GONE
-        } else {
-            binding.noRepairsText.visibility = View.GONE
-            binding.repairCardsContainer.visibility = View.VISIBLE
-            
-            // Update repair cards
-            repairs.take(2).forEachIndexed { index, repair ->
-                val card = when (index) {
-                    0 -> binding.repairCard1
-                    1 -> binding.repairCard2
-                    else -> null
-                }
-                
-                card?.let {
-                    updateRepairCard(it, repair)
-                }
-            }
+            return
+        }
+
+        binding.noRepairsText.visibility = View.GONE
+        binding.repairCardsContainer.visibility = View.VISIBLE
+
+        repairs.take(2).forEachIndexed { index, repair ->
+            val card =
+                    when (index) {
+                        0 -> binding.repairCard1
+                        1 -> binding.repairCard2
+                        else -> null
+                    }
+
+            card?.let { updateRepairCard(it, repair) }
         }
     }
 
     private fun updateRepairCard(cardView: View, repair: RepairRequest) {
-        val deviceName = cardView.findViewById<TextView>(R.id.deviceName)
-        val repairType = cardView.findViewById<TextView>(R.id.repairType)
-        val repairDate = cardView.findViewById<TextView>(R.id.repairDate)
-        val repairLocation = cardView.findViewById<TextView>(R.id.repairLocation)
-        val repairStatus = cardView.findViewById<TextView>(R.id.repairStatus)
-        val repairCost = cardView.findViewById<TextView>(R.id.repairCost)
-        
-        deviceName.text = repair.deviceModel
-        repairType.text = repair.issue
-        repairDate.text = formatDate(repair.scheduledDate)
-        repairLocation.text = repair.serviceCenterId // You might want to fetch service center name
-        repairStatus.text = repair.status.name
-        repairCost.text = formatCurrency(repair.estimatedCost)
-        
-        cardView.setOnClickListener {
-            val intent = Intent(this, RepairDetailActivity::class.java).apply {
-                putExtra("repair_id", repair.id)
+        with(cardView) {
+            findViewById<TextView>(R.id.deviceName).text = repair.deviceModel
+            findViewById<TextView>(R.id.repairType).text = repair.issue
+            findViewById<TextView>(R.id.repairDate).text = formatDate(repair.scheduledDate)
+            findViewById<TextView>(R.id.repairLocation).text = repair.serviceCenterId
+            findViewById<TextView>(R.id.repairStatus).apply {
+                text = repair.status.name
+                setTextColor(getStatusColor(repair.status))
+                background = getStatusBackground(repair.status)
             }
-            startActivity(intent)
+            findViewById<TextView>(R.id.repairCost).text =
+                    getString(R.string.price_format, repair.estimatedCost)
+
+            setOnClickListener {
+                val intent = Intent(this@DashboardActivity, RepairDetailActivity::class.java)
+                intent.putExtra("repair_id", repair.id)
+                startActivity(intent)
+            }
         }
     }
 
     private fun navigateToServices(category: String) {
-        val intent = Intent(this, ServicesActivity::class.java).apply {
-            putExtra("category", category)
-        }
+        val intent =
+                Intent(this, ServicesActivity::class.java).apply { putExtra("category", category) }
         startActivity(intent)
     }
 
@@ -155,11 +162,25 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun formatDate(timestamp: Long): String {
-        // Implement date formatting
-        return android.text.format.DateFormat.format("MMMM dd, yyyy", timestamp).toString()
+        val dateFormat = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
+        return dateFormat.format(timestamp)
     }
 
-    private fun formatCurrency(amount: Double): String {
-        return "Rp${String.format("%,.0f", amount)}"
+    private fun getStatusColor(status: RepairStatus): Int {
+        return when (status) {
+            RepairStatus.COMPLETED -> getColor(R.color.status_completed)
+            RepairStatus.IN_PROGRESS -> getColor(R.color.status_in_progress)
+            RepairStatus.CANCELLED -> getColor(R.color.status_cancelled)
+            else -> getColor(R.color.status_pending)
+        }
+    }
+
+    private fun getStatusBackground(status: RepairStatus): Drawable {
+        return when (status) {
+            RepairStatus.COMPLETED -> getDrawable(R.drawable.status_completed_bg)!!
+            RepairStatus.IN_PROGRESS -> getDrawable(R.drawable.status_inprogress_bg)!!
+            RepairStatus.CANCELLED -> getDrawable(R.drawable.status_cancelled_bg)!!
+            else -> getDrawable(R.drawable.status_pending_bg)!!
+        }
     }
 }
