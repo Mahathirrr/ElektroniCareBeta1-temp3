@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Background and surface colors -->
+    <color name="color_localhost_Athens_Gray">#F4F5F7</color> <!-- Light gray for background -->
+    <color name="color_localhost_White">#FFFFFF</color> <!-- Pure white for cards and icons -->
+    <color name="color_localhost_Titan_White">#F8F9FD</color> <!-- Off-white for secondary backgrounds -->
+
+    <!-- Primary and accent colors -->
+    <color name="color_localhost_Electric_Violet">#6200EE</color> <!-- Vibrant purple for headers and accents -->
+    <color name="color_localhost_Flamingo">#F28C38</color> <!-- Bright orange for notifications -->
+    <color name="color_localhost_Cornflower_Blue">#6495ED</color> <!-- Blue for notification dots -->
+    <color name="color_localhost_Persian_Blue">#1C39BB</color> <!-- Dark blue for in-progress status -->
+    <color name="color_localhost_Jewel">#12674A</color> <!-- Green for completed status -->
+    <color name="color_localhost_Scandal">#ADD8E6</color> <!-- Light blue-green for completed status background -->
+    <color name="color_localhost_Pattens_Blue">#D6EAF8</color> <!-- Very light blue for in-progress status background -->
+
+    <!-- Text and icon colors -->
+    <color name="color_localhost_Ebony">#121212</color> <!-- Near-black for primary text -->
+    <color name="color_localhost_Ebony_Clay">#252A34</color> <!-- Dark gray for secondary text -->
+    <color name="color_localhost_River_Bed">#455A64</color> <!-- Medium gray for tertiary text -->
+    <color name="color_localhost_Pale_Sky">#6B7280</color> <!-- Light gray for timestamps -->
+    <color name="purple_primary">#7C3AED</color>
+    <color name="purple_light">#F5F3FF</color>
+    <color name="green_check">#4ADE80</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="text_dark">#000000</color>
+    <color name="text_grey">#555555</color>
+    <color name="text_light_grey">#888888</color>
+    <color name="star_yellow">#FFD700</color>
+</resources>

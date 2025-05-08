@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash Screen ElektroniCare -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#7E3FF2"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <!-- Logo container -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_logo"
+        android:contentDescription="@string/logo_desc" />
+
+    <!-- Spacer -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+
+    <!-- App Name -->
+    <TextView
+        android:id="@+id/appNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ElektroniCare"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Small spacer -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+
+    <!-- Tagline -->
+    <TextView
+        android:id="@+id/taglineTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expert Electronics Repair"
+        android:textColor="#FFFFFF"
+        android:alpha="0.9"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center" />
+
+</LinearLayout>

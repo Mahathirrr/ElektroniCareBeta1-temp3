@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ElektroniCare</string>
+    <string name="logo_desc">Elektronicare</string>
+    <string name="repair_tracking">Repair Tracking</string>
+    <string name="categories">Categories</string>
+    <string name="home">Home</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <string name="recent_repairs">Recent Repairs</string>
+    <string name="see_all">See All</string>
+    <string name="view_details">View Details</string>
+    <string name="default_web_client_id">23815238785-sranla25dutsbj57ig2vltbik652mqt3.apps.googleusercontent.com</string>
+</resources>

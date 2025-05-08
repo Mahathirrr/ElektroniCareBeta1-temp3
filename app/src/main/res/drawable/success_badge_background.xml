@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+	<solid android:color="#7E3FF2" />
+	<corners android:radius="40dp" />
+	<path
+		android:fillColor="#7E3FF2"
+		android:pathData="M50,0 C22.4,0,0,22.4,0,50 C0,77.6,22.4,100,50,100 C77.6,100,100,77.6,100,50 C100,22.4,77.6,0,50,0 Z M50,90 C28,90,10,72,10,50 C10,28,28,10,50,10 C72,10,90,28,90,50 C90,72,72,90,50,90 Z" />
+</shape>

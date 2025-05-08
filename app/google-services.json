@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "23815238785",
+    "project_id": "elektronicare-4a4dc",
+    "storage_bucket": "elektronicare-4a4dc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23815238785:android:4e45bd4b963c3933378980",
+        "android_client_info": {
+          "package_name": "com.example.elektronicarebeta1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3e48kCnoG2WTxk76pvNJhl4H_KAmcwiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

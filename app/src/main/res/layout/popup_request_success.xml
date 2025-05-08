@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/popup_background"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <!-- Success Icon -->
+        <ImageView
+            android:layout_width="127dp"
+            android:layout_height="107dp"
+            android:src="@drawable/badge_success" />
+
+        <!-- Success Message -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Service Request Has Been\nSuccessfully Sent"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- WhatsApp Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_whatsapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue to WhatsApp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:background="@drawable/button_background_purple"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"/>
+
+        <!-- Homepage Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_homepage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return to Homepage"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:background="@drawable/button_background_purple"
+            android:layout_marginTop="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"/>
+    </LinearLayout>
+</RelativeLayout>

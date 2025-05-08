@@ -1,0 +1,31 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="104dp"
+    android:height="105dp"
+    android:viewportWidth="104"
+    android:viewportHeight="105">
+
+    <!-- Background Rectangle -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M14.8615,0H89.1425C97.3256,0 104,6.67442 104,14.8571V89.1381C104,97.3212 97.3256,103.9956 89.1425,103.9956H14.8615C6.67844,103.9956 0.00439453,97.3212 0.00439453,89.1381V14.8571C0.00439453,6.67442 6.67844,0 14.8615,0Z" />
+
+    <!-- Main Hexagon -->
+    <path
+        android:fillColor="#7C3AED"
+        android:pathData="M52.0043,30.6072L61.6615,36.1786V47.3215L52.0043,52.8929L42.3472,47.3215V36.1786L52.0043,30.6072Z" />
+
+    <!-- Top Right Hexagon (Opacity 0.8) -->
+    <path
+        android:fillColor="#CC7C3AED"
+        android:pathData="M64.6332,41.0071L74.2904,46.5785V57.7214L64.6332,63.2928L54.9761,57.7214V46.5785L64.6332,41.0071Z" />
+
+    <!-- Top Left Hexagon (Opacity 0.8) -->
+    <path
+        android:fillColor="#CC7C3AED"
+        android:pathData="M39.3759,41.0071L49.033,46.5785V57.7214L39.3759,63.2928L29.7188,57.7214V46.5785L39.3759,41.0071Z" />
+
+    <!-- Bottom Hexagon (Opacity 0.6) -->
+    <path
+        android:fillColor="#997C3AED"
+        android:pathData="M52.0043,58.8357L61.6615,64.4071V75.55L52.0043,81.1214L42.3472,75.55V64.4071L52.0043,58.8357Z" />
+</vector>
